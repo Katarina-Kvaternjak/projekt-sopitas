@@ -117,6 +117,9 @@ img{
     width:100px;
     display:inline-block;
 }
+.naslov:hover a:hover{
+    text-decoration:5px solid skyblue underline;
+}
 /* izgled forme*/
 form{
     width: 50%;
