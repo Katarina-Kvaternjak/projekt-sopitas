@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Unos</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Početna</a></li>
+                    <li class="drop">
+                        Kategorija
+                        <ul class="dropdown">
+                            <li><a href="kategorija.php?kategorija=zabava">Zabava</a></li>
+                            <li><a href="kategorija.php?kategorija=tehnologija">Tehnologija</a></li>
+                            <li><a href="kategorija.php?kategorija=sport">Sport</a></li>
+                            <li><a href="kategorija.php?kategorija=politika">Politika</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="login.php">Administracija</a></li>
+                    <li><a href="unos.html">Unos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="wrap">
+            <form name="unos" id="unos" action="unos.php" method="post" enctype="multipart/form-data">
+                <label for="naslov">Naslov</label><br>
+                <input type="text" name="naslov" id="naslov" autofocus><br>
+                <label for="kategorija">Kategorija</label><br>
+                <select name="kategorija" id="kategorija">
+                    <option value="zabava">Zabava</option>
+                    <option value="sport">Sport</option>
+                    <option value="politika">Politika</option>
+                    <option value="tehnologija">Tehnologija</option>
+                </select><br>                
+                <label for="sazetak">Sažetak</label><br>
+                <textarea name="sazetak" id="sazetak"></textarea><br>
+                <label for="sadrzaj">Sadržaj</label><br>
+                <textarea name="sadrzaj" id="sadrzaj"></textarea><br>
+                <label for="slika">Slika</label><br>
+                <input type="file" name="slika" id="slika"><br>
+                <label for="prikazi">Prikaži vijest</label><br>
+                <input type="checkbox" id="prikazi" name="prikazi" checked>
+                
+                <input type="submit" value="Unesi">
+            </form>
+        </div>
+        <footer>
+            <p>Katarina Kvaternjak | katarina.kvaternjak@tvz.hr | 2021</p>
+        </footer>
+    </body>
+</html>
+<script>
+    $(function() {
+    $("form[name='unos']").validate({
+      
+        rules: {
+            naslov: {
+                minlength: 5,
+                maxlength: 30
+            },
+            kategorija: {
+                required: true,
+            },
+            sazetak: {
+                minlength:10,
+                maxlength: 100,
+            },
+            sadrzaj: {
+                required: true,
+            },
+            slika: {
+                required: true,
+            }
+        },
+
+        messages: {
+            naslov: {
+                minlength: "Naslov mora imati 5 do 30 znakova",
+                maxlenght: "Naslov ne smije imati više od 30 znakova",
+            },
+            kategorija:{
+                required: "Morate odabrati kategoriju"
+            },
+            sazetak:{
+                minlength: "Sažetak mora imati 10 do 100 znakova",
+                maxlength: "Sažetak ne smije imati više od 100 znakova"
+            },
+            sadrzaj:{
+                required:"Članak mora imati tekst",
+            },
+            slika:{
+                required: "Članak mora imati sliku",
+            }
+        },
+
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+  });
+</script>
