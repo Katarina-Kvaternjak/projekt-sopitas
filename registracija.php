@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Registracija</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     </head>
     <body>
         <header>
@@ -34,6 +36,8 @@
                 <input type="text" name="user" id="user"><br>
                 <label for="pass">Lozinka</label><br>
                 <input type="password" name="pass" id="pass"><br>
+                <label for="pass1">Potvrdite lozinku</label><br>
+                <input type="password" name="pass1" id="pass1"><br>
                 <input type="submit" value="Registriraj se">
             </form>
             <?php
@@ -72,3 +76,52 @@
         </footer>
     </body>
 </html>
+<script>
+    $(function() {
+        $("form[name='reg']").validate({
+
+            rules: {
+                ime: {
+                    required: true,
+                },
+                prezime: {
+                    required: true,
+                },
+                user: {
+                    required: true,
+                    minlength:5,
+                },
+                pass: {
+                    required: true,
+                    minlength:5,
+                },
+                pass1: {
+                    equalTo: "#pass",
+                }
+            },
+
+            messages: {
+                ime: {
+                    required:"Morate unjeti ime",
+                },
+                prezime:{
+                    required: "Morate unjeti prezime",
+                },
+                user:{
+                    minlength: "Korisničko ime mora imati minimalno 5 znakova",
+                },
+                pass:{
+                    required:"Morate postaviti lozinku",
+                    minlength:"Lozinka mora imati bar 5 znakova",
+                },
+                pass1:{
+                    equalTo: "Lozinke se ne podudaraju",
+                },
+            },
+
+                submitHandler: function(form) {
+                    form.submit();
+            },
+        });
+    });
+    </script>
